@@ -23,8 +23,8 @@ services:
         USER_UID: 1000
         USER_GID: 1000
     volumes:
-      - ./app:/app
+      - ./app:/home/docker
     ports:
-      - 3000:8000
+      - 3000:80
 volumes:
   db_data:
