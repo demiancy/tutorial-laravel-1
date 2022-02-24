@@ -6,9 +6,13 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 * PHP
 * Laravel
 * Livewire
+* Composer
 
 # App
 Sales system
+
+# Composer packages used
+
 
 # Deployment
 
