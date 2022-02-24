@@ -1,0 +1,9 @@
+FROM bitnami/laravel:latest
+
+ARG USER=bitnami
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+USER ${USER_UID}:${USER_GID}
+
+

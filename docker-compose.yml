@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - db_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_USER=root
+      - UPLOAD_LIMIT=100M
+      - MAX_EXECUTION_TIME=600
+      - MEMORY_LIMIT=512M
+    ports:
+      - 80:80      
+  app:
+    build:
+      context: .
+      args:
+        # On Linux, you may need to update USER_UID and USER_GID below if not your local UID is not 1000.
+        USER_UID: 1000
+        USER_GID: 1000
+    volumes:
+      - ./app:/app
+    ports:
+      - 3000:8000
+volumes:
+  db_data:
