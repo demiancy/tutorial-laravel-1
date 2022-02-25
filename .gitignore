@@ -27,3 +27,4 @@ app/public
 
 *.code-workspace
 app/.bash_history
+app/build.sh
