@@ -8,6 +8,10 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 * Livewire
 * Composer
 
+## Notes
+* I used Docker.
+* I used Laravel 9.
+
 # App
 Sales system
 
