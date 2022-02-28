@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('sale_details', function (Blueprint $table) {
             $table->id();
-            $table->decimal('price', $precision = 8, $scale = 2);
-            $table->integer('quantity');
+            $table->decimal('price', $precision = 10, $scale = 2);
+            $table->decimal('quantity', $precision = 10, $scale = 2);
             $table->foreignId('sale_id')->constrained();
             $table->foreignId('product_id')->constrained();
             $table->timestamps();
