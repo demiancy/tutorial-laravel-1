@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('barcode', 45)->unique()->nullable();
-            $table->decimal('cost', $precision = 8, $scale = 2);
-            $table->decimal('price', $precision = 8, $scale = 2);
+            $table->string('barcode', 25)->unique()->nullable();
+            $table->decimal('cost', $precision = 10, $scale = 2)->default(0);
+            $table->decimal('price', $precision = 10, $scale = 2)->default(0);
             $table->integer('stock');
             $table->integer('alerts');
-            $table->string('image', 55)->nullable();
+            $table->string('image', 100)->nullable();
             $table->foreignId('category_id')->constrained();
             $table->timestamps();
         });
