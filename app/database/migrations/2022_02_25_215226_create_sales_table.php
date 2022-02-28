@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total', $precision = 8, $scale = 2)->default(0);
+            $table->decimal('total', $precision = 10, $scale = 2)->default(0);
             $table->integer('items');
-            $table->decimal('cash', $precision = 8, $scale = 2);
-            $table->decimal('change', $precision = 8, $scale = 2);
-            $table->enum('status', ['PAID', 'PENDING', 'CANCELED'])->default('PAID');
+            $table->decimal('cash', $precision = 10, $scale = 2);
+            $table->decimal('change', $precision = 10, $scale = 2);
+            $table->enum('status', ['PAID', 'PENDING', 'CANCELLED'])->default('PAID');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
