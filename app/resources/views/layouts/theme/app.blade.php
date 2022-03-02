@@ -46,5 +46,6 @@
 
         @include('layouts.theme.footer')
     </main>
+    @livewireScripts
 </body>
 </html>

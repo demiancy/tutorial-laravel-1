@@ -15,8 +15,8 @@
 
 <script src="{{ asset('theme/plugins/sweetalerts/sweetalert2.min.js') }}" defer></script>
 <script src="{{ asset('theme/plugins/notification/snackbar/snackbar.min.js') }}" defer></script>
-<script src="{{ asset('theme/plugins/nicescroll/nicescroll.min.js') }}" defer></script>
-<script src="{{ asset('theme/plugins/currency/currency.min.js') }}" defer></script>
+<script src="{{ asset('theme/plugins/nicescroll/nicescroll.js') }}" defer></script>
+<script src="{{ asset('theme/plugins/currency/currency.js') }}" defer></script>
 
 <script src="{{ asset('js/app.js') }}" defer></script>
 
