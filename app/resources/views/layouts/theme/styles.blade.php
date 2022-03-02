@@ -12,4 +12,7 @@
 <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
 <!-- Styles -->
+<link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+@livewireStyles
