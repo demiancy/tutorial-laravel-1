@@ -23,7 +23,6 @@ app/.vagrant
 app/.phpunit.result.cache
 app/.cache/
 app/.npm/
-app/public
 
 *.code-workspace
 app/.bash_history
