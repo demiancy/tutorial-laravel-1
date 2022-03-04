@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         $data = [
             [
                 'name'     => 'Usuario Administrador',
-                'email'    => 'admin@no_email.com',
+                'email'    => 'admin@noemail.com',
                 'password' => 'desa',
                 'phone'    => '00000000',
                 'profile'  => 'ADMIN',
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name'     => 'Usuario empleado',
-                'email'    => 'employee@no_email.com',
+                'email'    => 'employee@noemail.com',
                 'password' => 'desa',
                 'phone'    => '00000000',
                 'profile'  => 'EMPLOYEE',
