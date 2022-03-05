@@ -9,6 +9,11 @@ aside {
   border-color: #3b3f5c;
 }
 
+.navbar-title {
+  color: #3b3f5c;
+  font-size: 19px;
+}
+
 @media (max-width: 480px) {
   .mtmobile {
     margin-bottom: 20px !important;
