@@ -4,7 +4,7 @@
             <li class="nav-item theme-logo">
                 <a href="/" class="text-decoration-none">
                     <img src="{{ asset('theme/img/livewire_logo.png') }}" class="navbar-logo" alt="logo">
-                    <span class="fw-bold navbar-title">LWPOS</span>
+                    <span class="font-weight-bold navbar-title">LWPOS</span>
                 </a>
             </li>
         </ul>

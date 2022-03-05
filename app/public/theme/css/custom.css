@@ -14,6 +14,10 @@ aside {
   font-size: 19px;
 }
 
+.widget-chart-one thead {
+  background-color: #3b3f5c;
+}
+
 @media (max-width: 480px) {
   .mtmobile {
     margin-bottom: 20px !important;
