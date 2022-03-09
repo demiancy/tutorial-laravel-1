@@ -19,7 +19,14 @@ class Categories extends Component
     public string $pageTitle;
     public string $componentName;
     public int $selected_id;
-    private int $pagination = 5;
+    private int $pagination;
+
+    public function mount()
+    {
+        $this->pageTitle     = 'Listado';
+        $this->componentName = 'Categorías';
+        $this->pagination    = 5;
+    }
 
     public function render()
     {
@@ -29,6 +36,6 @@ class Categories extends Component
             'categories' => $categories
         ])
         ->extends('layouts.theme.app')
-        -section('content');
+        ->section('content');
     }
 }
