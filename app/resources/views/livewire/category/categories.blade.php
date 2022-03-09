@@ -77,5 +77,5 @@
             </div>
         </div>
     </div>
-    Include Form
+    @include('livewire.category.form')
 </div>
