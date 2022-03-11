@@ -13,8 +13,7 @@
                         <a 
                             href="javascript:void(0)" 
                             class="tabmenu bg-dark" 
-                            data-toggle="modal" 
-                            data-target="#theModal"
+                            wire:click="new()"
                         >
                             Agregar
                         </a>
@@ -55,7 +54,7 @@
                                         href="javascript:void(0)" 
                                         class="btn btn-dark mtmobile" 
                                         title="Edit"
-                                        wire:click="Edit({{ $category->id }})"
+                                        wire:click="edit({{ $category->id }})"
                                     >
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
