@@ -31,7 +31,7 @@
         });
     }
 
-    function Confirm(id) {
+    function confirm(event, id) {
         swal({
             title: 'CONFIRMAR',
             text: '¿CONFIRMAS ELIMINAR EL REGISTRO?',
@@ -45,7 +45,7 @@
             function (result) {
                 if (result.value) {
                     console.log(window.livewire);
-                    window.livewire.emit('deleteRow', id);
+                    window.livewire.emit(event, id);
                     swal.close();
                 }
             }

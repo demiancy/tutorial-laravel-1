@@ -14,6 +14,9 @@ class Categories extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    protected $listeners       = [
+        'deleteCategory' => 'destroy'
+    ];
 
     public ?Category $object;
     public string $search;
@@ -71,11 +74,17 @@ class Categories extends Component
         $this->emit('show-modal', 'show modal');
     }
 
-    public function edit(int $id)
+    public function edit(Category $category)
     {
-        $this->object = Category::find($id, ['id', 'name', 'image']);
+        $this->object = $category;
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        $this->resetUI();
     }
 
     public function resetUI()

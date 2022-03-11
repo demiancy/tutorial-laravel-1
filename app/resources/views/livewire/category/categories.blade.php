@@ -62,7 +62,7 @@
                                         href="javascript:void(0)" 
                                         class="btn btn-dark" 
                                         title="Delete"
-                                        onclick="Confirm({{ $category->id }})"
+                                        onclick="confirm('deleteCategory', {{ $category->id }})"
                                     >
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
