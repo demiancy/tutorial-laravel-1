@@ -31,7 +31,7 @@
                 accept="image/x-png, image/gif, image/jpeg"
             >
             <label class="custom-file-label">
-                Imágen {{ $image }}
+                Imágen {{ $image ?? ($object->image ?? '') }}
             </label>
 
             @error('image')

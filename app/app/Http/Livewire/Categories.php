@@ -49,10 +49,12 @@ class Categories extends Component
         ->section('content');
     }
 
+    //Livewire need to defined rules for binding object.
     protected function rules()
     {
+        //Unique validation need the id on update.
         $unique = 'unique:categories,name';
-        if (($this->object) && ($this->object->exists())) {
+        if ($this->object->exists ?? false) {
             $unique .= ",{$this->object->id}";
         }
 
@@ -65,13 +67,14 @@ class Categories extends Component
     public function new()
     {
         $this->object = new Category();
+        $this->image  = null;
         $this->emit('show-modal', 'show modal');
     }
 
     public function edit(int $id)
     {
         $this->object = Category::find($id, ['id', 'name', 'image']);
-        $this->image = $this->object->image;
+        $this->image  = null;
         $this->emit('show-modal', 'show modal');
     }
 
@@ -82,11 +85,25 @@ class Categories extends Component
         $this->emit('hide-modal', 'hide modal');
     }
 
-    public function save()
+    public function store()
     {
         $this->validate();
 
         if ($this->image) {
+            $this->object->image = $this->image->store(null, 'categories');
+        }
+
+        $this->object->save();
+        $this->resetUI();
+    }
+
+    public function update()
+    {
+        $this->validate();
+
+        if ($this->image) {
+            //Remove old file.
+            Storage::disk('categories')->delete($this->object->image);
             $this->object->image = $this->image->store(null, 'categories');
         }
 

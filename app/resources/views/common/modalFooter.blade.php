@@ -4,13 +4,13 @@
                     CERRAR
                 </button>
 
-                @if (!$object)
-                    <button type="button" wire:click.prevent="save()" class="btn btn-dark close-modal">
-                        GUARDAR
+                @if ($object->exists ?? false)
+                    <button type="button" wire:click.prevent="update()" class="btn btn-dark close-modal">
+                        ACTUALIZAR
                     </button>
                 @else
-                    <button type="button" wire:click.prevent="save()" class="btn btn-dark close-modal">
-                        ACTUALIZAR
+                    <button type="button" wire:click.prevent="store()" class="btn btn-dark close-modal">
+                        GUARDAR
                     </button>
                 @endif
             </div>
