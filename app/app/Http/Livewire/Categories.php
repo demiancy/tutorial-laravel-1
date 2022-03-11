@@ -14,23 +14,32 @@ class Categories extends Component
     use WithPagination;
 
     public string $name;
-    public string $search;
+    public ?string $search;
     public string $image;
     public string $pageTitle;
     public string $componentName;
     public int $selected_id;
-    private int $pagination;
+    public int $pagination;
 
     public function mount()
     {
         $this->pageTitle     = 'Listado';
         $this->componentName = 'Categorías';
         $this->pagination    = 5;
+        $this->search        = '';
     }
 
     public function render()
     {
-        $categories = Category::all();
+        if (strlen($this->search)) {
+            $categories = Category::where('name', 'like', '%'.$this->search.'%')
+                ->orderBy('id', 'desc')
+                ->paginate($this->pagination);
+        } else {
+            $categories = Category::orderBy('id', 'desc')
+                ->paginate($this->pagination);
+        }
+
 
         return view('livewire.category.categories',[
             'categories' => $categories

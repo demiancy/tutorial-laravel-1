@@ -21,7 +21,7 @@
                     </li>
                 </ul>
             </div>
-            Search
+            @include('common.searchBox')
 
             <div class="widget-content">
                 <div class="table-responsive">

@@ -44,6 +44,7 @@
         }).then(
             function (result) {
                 if (result.value) {
+                    console.log(window.livewire);
                     window.livewire.emit('deleteRow', id);
                     swal.close();
                 }
