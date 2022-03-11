@@ -13,8 +13,10 @@ class Categories extends Component
     use WithFileUploads;
     use WithPagination;
 
+    protected $paginationTheme = 'bootstrap';
+
     public string $name;
-    public ?string $search;
+    public string $search;
     public string $image;
     public string $pageTitle;
     public string $componentName;
@@ -39,7 +41,6 @@ class Categories extends Component
             $categories = Category::orderBy('id', 'desc')
                 ->paginate($this->pagination);
         }
-
 
         return view('livewire.category.categories',[
             'categories' => $categories

@@ -72,7 +72,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    Pagination
+                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
