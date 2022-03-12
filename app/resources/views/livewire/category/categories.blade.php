@@ -40,13 +40,14 @@
                                 </td>
                                 <td class="text-center">
                                     <span>
-                                        <img 
-                                            src="{{ Storage::disk('categories')->url($category->image) }}" 
-                                            alt="Imagen de {{ $category->name }}" 
-                                            height="70" 
-                                            width="80" 
-                                            class="rounded"
-                                        >
+                                        @include(
+                                            'common.image', 
+                                            [
+                                                'image'   => $category->image, 
+                                                'storage' => 'categories', 
+                                                'alt'     => "Imagen de $category->name"
+                                            ]
+                                        )
                                     </span>
                                 </td>
                                 <td class="text-center">
