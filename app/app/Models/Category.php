@@ -32,4 +32,17 @@ class Category extends Model
             Storage::disk('categories')->delete($category->image);
         });
     }
+
+    /**
+     * Products
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function canDelete()
+    {
+        return !$this->products()->exists();
+    }
 }

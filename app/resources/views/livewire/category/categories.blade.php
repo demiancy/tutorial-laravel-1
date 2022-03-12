@@ -53,16 +53,22 @@
                                     <a 
                                         href="javascript:void(0)" 
                                         class="btn btn-dark mtmobile" 
-                                        title="Edit"
+                                        title="Editar"
                                         wire:click="edit({{ $category->id }})"
                                     >
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </a>
                                     <a 
                                         href="javascript:void(0)" 
-                                        class="btn btn-dark" 
-                                        title="Delete"
-                                        onclick="confirm('deleteCategory', {{ $category->id }})"
+                                        @if ($category->canDelete())
+                                            class="btn btn-dark" 
+                                            title="Borrar"
+                                            onclick="confirm('deleteCategory', {{ $category->id }})"
+                                        @else
+                                            class="btn btn-dark disabled" 
+                                            title="Esta categoria no puede ser borrada"
+                                            disabled
+                                        @endif
                                     >
                                         <i class="fa-solid fa-trash"></i>
                                     </a>

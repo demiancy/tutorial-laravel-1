@@ -83,7 +83,10 @@ class Categories extends Component
 
     public function destroy(Category $category)
     {
-        $category->delete();
+        if ($category->canDelete()) {
+            $category->delete();
+        }
+        
         $this->resetUI();
     }
 
