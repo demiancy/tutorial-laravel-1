@@ -18,6 +18,38 @@ aside {
   background-color: #3b3f5c;
 }
 
+
+/* HEADER */
+.navbar .navbar-item .nav-item form.form-inline input.search-form-control {
+  background-color: #3b3f5c;
+  color: #ffffff;
+}
+
+.navbar .navbar-item .nav-item.search-animated svg {
+  color: #ffffff;
+}
+
+
+/* SIDEBAR */
+.sidebar-theme #compactSidebar {
+  background-color: #192e3a;
+}
+
+.header-container .sidebarCollapse {
+  color: #3b3f5c;
+}
+
+
+@media (max-width: 767px) {
+  .navbar .navbar-item .nav-item form.form-inline input.search-form-control {
+    color: #3b3f5c;
+  }
+
+  .navbar .navbar-item .nav-item.search-animated svg {
+    color: #3b3f5c ;
+  }
+}
+
 @media (max-width: 480px) {
   .mtmobile {
     margin-bottom: 20px !important;
