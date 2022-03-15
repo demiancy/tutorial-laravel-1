@@ -27,7 +27,7 @@
             actionText: 'Cerrar',
             actionTextColor: '#fff',
             backgroundColor: option == 1 ? '#3b3f5c' : '#e7515a',
-            pos: 'top-right'
+            pos: 'bottom-right'
         });
     }
 
@@ -53,18 +53,22 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {  
-        window.livewire.on('category-added', msg => {
+        /*window.livewire.on('category-added', msg => {
             $('#theModal').modal('hide');
             noty(msg);
-        });
+        });*/
 
-        window.livewire.on('category-updated', msg => {
+        /*window.livewire.on('category-updated', msg => {
             $('#theModal').modal('hide');
             noty(msg);
         });
 
         window.livewire.on('category-deleted', msg => {
             noty(msg);
+        });*/
+
+        window.livewire.on('noty', msg => {
+            noty(msg)
         });
 
         window.livewire.on('hide-modal', msg => {

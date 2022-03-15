@@ -23,7 +23,7 @@ class Categories extends Component
     public $image;
     public string $pageTitle;
     public string $componentName;
-    public int $pagination = 5;
+    public int $pagination;
 
     public function mount()
     {
@@ -38,15 +38,13 @@ class Categories extends Component
     {
         if (strlen($this->search)) {
             $categories = Category::where('name', 'like', '%'.$this->search.'%')
-                ->orderBy('id', 'desc')
-                ->paginate($this->pagination);
+                ->orderBy('id', 'desc');
         } else {
-            $categories = Category::orderBy('id', 'desc')
-                ->paginate($this->pagination);
+            $categories = Category::orderBy('id', 'desc');
         }
 
         return view('livewire.category.categories',[
-            'categories' => $categories
+            'categories' => $categories->paginate($this->pagination)
         ])
         ->extends('layouts.theme.app')
         ->section('content');
@@ -87,6 +85,7 @@ class Categories extends Component
             $category->delete();
         }
         
+        $this->emit('noty', "La categoría {$category->name} fue eliminada correctamente");
         $this->resetUI();
     }
 
@@ -106,6 +105,7 @@ class Categories extends Component
         }
 
         $this->object->save();
+        $this->emit('noty', 'Agregada nueva categoría');
         $this->resetUI();
     }
 
@@ -120,6 +120,7 @@ class Categories extends Component
         }
 
         $this->object->save();
+        $this->emit('noty', "La categoría {$this->object->name} fue actualizada correctamente");
         $this->resetUI();
     }
 }

@@ -27,7 +27,7 @@ class Category extends Model
      */
     protected static function booted()
     {
-        //Borra la imagen cuando se borra el objeto.
+        //Remove the image when delete object.
         static::deleted(function ($category) {
             Storage::disk('categories')->delete($category->image);
         });
