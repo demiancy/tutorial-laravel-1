@@ -1,5 +1,5 @@
 <img 
-    @if ( Storage::disk($storage)->exists($image) )
+    @if ($image && Storage::disk($storage)->exists($image))
         src="{{ Storage::disk($storage)->url($image) }}" 
     @else
         src="/theme/img/default.jpg" 

@@ -79,7 +79,7 @@
             $('#theModal').modal('show');
         });
 
-        window.livewire.on('hidden.bs.modal', msg => {
+        $('#theModal').on('hidden.bs.modal', function (e) {
             $('.er').css('display', 'none');
         });
     })
