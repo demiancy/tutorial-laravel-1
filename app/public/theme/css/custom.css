@@ -1,3 +1,11 @@
+@import url('main.css');
+@import url('color-pallet.css');
+@import url('elements/avatar.css');
+@import url('widgets/modules-widgets.css');
+@import url('forms/theme-checkbox-radio.css');
+@import url('apps/scrumboard.css');
+@import url('apps/notes.css');
+
 aside {
   display: none !important;
 }
@@ -16,6 +24,20 @@ aside {
 
 .widget-chart-one thead {
   background-color: #3b3f5c;
+}
+
+.sale-details {
+  max-height: 650px;
+  overflow: hidden;
+}
+
+.sale-details thead {
+  background-color: #3b3f5c;
+}
+
+.sale-denomination-input-side {
+  background-color: #3b3f5c !important;
+  color: white !important;
 }
 
 

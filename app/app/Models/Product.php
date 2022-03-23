@@ -47,6 +47,11 @@ class Product extends Model
         });
     }
 
+    public function scopeByBarcode($query, $barcode = '') 
+    {
+        $query->where('barcode', $barcode);
+    }
+
     public function scopeOrCategoryName($query, $categoryName = '') 
     {
         $query->orWhereHas('category', function($query) use ($categoryName) {

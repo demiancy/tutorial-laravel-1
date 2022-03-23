@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Categories;
 use App\Http\Livewire\Products;
 use App\Http\Livewire\Denominations;
+use App\Http\Livewire\Sales;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/categories', Categories::class)->name('categories');
     Route::get('/products', Products::class)->name('products');
     Route::get('/denominations', Denominations::class)->name('denominations');
+    Route::get('/sales', Sales::class)->name('sales');
 });

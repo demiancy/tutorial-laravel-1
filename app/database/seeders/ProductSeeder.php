@@ -64,6 +64,19 @@ class ProductSeeder extends Seeder
             ]
         ];
 
+        for ($i=5; $i < 400; $i++) { 
+            $data[] = [
+                'name'        => "Product-$i",
+                'cost'        => 790,
+                'price'       => 1000,
+                'barcode'     => str_pad($i, 9, 0, STR_PAD_LEFT),
+                'stock'       => 1000,
+                'alerts'      => 10,
+                'category_id' => $computadoras->id,
+                'image'       => 'pcgammer.png'
+            ];
+        }
+
         foreach ($data as $product) {
             Product::create($product);
         }

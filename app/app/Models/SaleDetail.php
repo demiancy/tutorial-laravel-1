@@ -20,4 +20,12 @@ class SaleDetail extends Model
         'sale_id',
         'product_id'
     ];
+
+    /**
+     * Sale
+     */
+    public function sale()
+    {
+        return $this->belongsTo(Sale::class);
+    }
 }

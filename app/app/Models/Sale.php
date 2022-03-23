@@ -22,4 +22,12 @@ class Sale extends Model
         'status',
         'user_id'
     ];
+
+    /**
+     * Sale Details
+     */
+    public function details()
+    {
+        return $this->hasMany(SaleDetail::class);
+    }
 }

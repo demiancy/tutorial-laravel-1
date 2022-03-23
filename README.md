@@ -11,12 +11,13 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 ## Notes
 * I used Docker.
 * I used Laravel 9.
+* In Sales view, added a button for add random product to sale (for testing sale module).
 
 # App
 Sales system
 
 # Composer packages used
-
+* darryldecode/cart
 
 # Deployment
 
