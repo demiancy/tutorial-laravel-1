@@ -5,6 +5,7 @@ use App\Http\Livewire\Categories;
 use App\Http\Livewire\Products;
 use App\Http\Livewire\Denominations;
 use App\Http\Livewire\Sales;
+use App\Http\Livewire\Roles;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/products', Products::class)->name('products');
     Route::get('/denominations', Denominations::class)->name('denominations');
     Route::get('/sales', Sales::class)->name('sales');
+    Route::get('/roles', Roles::class)->name('roles');
 });

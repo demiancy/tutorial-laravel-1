@@ -124,9 +124,9 @@
             $('#theModal').modal('show');
         });
 
-        $('#theModal').on('hidden.bs.modal', function (e) {
+        /*$('#theModal').on('hidden.bs.modal', function (e) {
             $('.er').css('display', 'none');
-        });
+        });*/
 
         window.livewire.on('print-ticket', saleId => {
             window.open('print://' + saleId, '_blank');

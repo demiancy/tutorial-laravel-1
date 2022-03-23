@@ -48,7 +48,7 @@
             </li>
 
             <li>
-                <a href="#" class="menu-toggle" data-active="false">
+                <a href="{{ route('roles') }}" class="menu-toggle" data-active="false">
                     <div class="base-menu">
                         <div class="base-icons">
                             <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
@@ -56,34 +56,6 @@
                             </svg>
                         </div>
                         <span>ROLES</span>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="menu-toggle" data-active="false">
-                    <div class="base-menu">
-                        <div class="base-icons">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
-                                <polyline points="9 11 12 14 22 4"></polyline>
-                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                            </svg>
-                        </div>
-                        <span>PERMISOS</span>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="#" class="menu-toggle" data-active="false">
-                    <div class="base-menu">
-                        <div class="base-icons">
-                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </div>
-                        <span>ASIGNAR</span>
                     </div>
                 </a>
             </li>

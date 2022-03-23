@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             DenominationSeeder::class,
             CategorySeeder::class,
             ProductSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            PermissionSeeder::class
         ]);
     }
 }

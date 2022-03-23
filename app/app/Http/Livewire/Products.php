@@ -105,6 +105,7 @@ class Products extends Component
     {
         $this->object = null;
         $this->image  = null;
+        $this->resetValidation();
         $this->emit('hide-modal', 'hide modal');
     }
 
