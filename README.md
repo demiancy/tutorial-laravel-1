@@ -18,6 +18,7 @@ Sales system
 
 # Composer packages used
 * darryldecode/cart
+* spatie/laravel-permission
 
 # Deployment
 
