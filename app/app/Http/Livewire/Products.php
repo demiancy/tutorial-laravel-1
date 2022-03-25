@@ -95,6 +95,7 @@ class Products extends Component
     {
         if ($product->canDelete()) {
             $product->delete();
+            $this->resetPage();
         }
         
         $this->emit('noty', "El producto {$product->name} fue eliminado correctamente");

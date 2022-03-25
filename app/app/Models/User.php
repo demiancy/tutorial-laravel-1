@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -49,6 +50,27 @@ class User extends Authenticatable
     ];
 
     /**
+     * Sales
+     */
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        //Remove the image when delete object.
+        static::deleted(function ($user) {
+            Storage::disk('users')->delete($user->image);
+        });
+    }
+
+    /**
      * The password always has to be encrypted before being saved.
      */
     public function setPasswordAttribute($value)
@@ -56,5 +78,10 @@ class User extends Authenticatable
         if ($value) {
             $this->attributes['password'] = Hash::make($value);
         }
+    }
+
+    public function canDelete()
+    {
+        return !$this->sales()->exists();
     }
 }

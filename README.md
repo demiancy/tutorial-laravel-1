@@ -12,6 +12,8 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 * I used Docker.
 * I used Laravel 9.
 * In Sales view, added a button for add random product to sale (for testing sale module).
+* The permissions module was not implemented, no one should be able to remove, edit or add permissions.
+* The assignment module was replaced by a select multiple in the roles form.
 
 # App
 Sales system

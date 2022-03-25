@@ -83,6 +83,7 @@ class Categories extends Component
     {
         if ($category->canDelete()) {
             $category->delete();
+            $this->resetPage();
         }
         
         $this->emit('noty', "La categoría {$category->name} fue eliminada correctamente");

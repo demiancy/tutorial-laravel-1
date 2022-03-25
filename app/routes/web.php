@@ -6,6 +6,7 @@ use App\Http\Livewire\Products;
 use App\Http\Livewire\Denominations;
 use App\Http\Livewire\Sales;
 use App\Http\Livewire\Roles;
+use App\Http\Livewire\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/denominations', Denominations::class)->name('denominations');
     Route::get('/sales', Sales::class)->name('sales');
     Route::get('/roles', Roles::class)->name('roles');
+    Route::get('/users', Users::class)->name('users');
 });
 
 Route::redirect('/', '/sales');

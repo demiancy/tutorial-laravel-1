@@ -86,6 +86,7 @@ class Roles extends Component
     {
         if ($role->canDelete()) {
             $role->delete();
+            $this->resetPage();
         }
         
         $this->emit('noty', "El rol {$role->name} fue eliminado correctamente");

@@ -78,6 +78,7 @@ class Denominations extends Component
     {
         if ($denomination->canDelete()) {
             $denomination->delete();
+            $this->resetPage();
         }
         
         $this->emit('noty', "La moneda fue eliminada correctamente");
