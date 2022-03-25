@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -78,6 +79,18 @@ class User extends Authenticatable
         if ($value) {
             $this->attributes['password'] = Hash::make($value);
         }
+    }
+
+    /**
+     * Get the user's profile.
+     *
+     * @return \Illuminate\Database\Eloquent\Casts\Attribute
+     */
+    protected function profile(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->getRoleNames()?->first(),
+        );
     }
 
     public function canDelete()

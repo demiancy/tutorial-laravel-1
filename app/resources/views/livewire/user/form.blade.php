@@ -86,13 +86,14 @@
 
     <div class="col-12 col-md-6">
         <div class="form-group">
-            <label>Roles</label>
-            <select class="form-control" wire:model.lazy="selectedRoles" multiple>
+            <label>Rol</label>
+            <select class="form-control" wire:model.lazy="selectedRole">
+                <option value="">Elejir</option>
                 @foreach($roles as $role)
                     <option value="{{ $role->name }}">{{ $role->name }}</option>
                 @endforeach
             </select>
-            @error('selectedRoles.*')
+            @error('selectedRole')
                 <span class="text-danger er">
                     {{ $message }}
                 </span>

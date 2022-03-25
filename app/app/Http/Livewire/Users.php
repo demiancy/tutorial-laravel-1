@@ -27,7 +27,7 @@ class Users extends Component
     public ?string $password;
     public string $componentName;
     public int $pagination;
-    public $selectedRoles;
+    public ?string $selectedRole;
 
     public function mount()
     {
@@ -37,7 +37,7 @@ class Users extends Component
         $this->search        = '';
         $this->password      = '';
         $this->object        = null;
-        $this->selectedRoles = [];
+        $this->selectedRole  = '';
     }
 
     public function render()
@@ -64,6 +64,8 @@ class Users extends Component
         //Unique validation need the id on update.
         $uniqueName  = 'unique:users,name';
         $uniqueEmail = 'unique:users,email';
+
+        //Required is only for new users.
         $required    = 'required|';
         if ($this->object->exists ?? false) {
             $uniqueName  .= ",{$this->object->id}";
@@ -72,15 +74,13 @@ class Users extends Component
         }
 
         return [
-            'object.name'     => "required|string|$uniqueName|min:3|max:255",
-            'object.phone'    => "string|min:3|max:10",
-            'object.email'    => "required|string|email:rfc,dns,filter|$uniqueEmail|min:1|max:255",
-            'password'        => "{$required}string|max:255|min:8",
-            'object.status'   => "required|string|max:255|in:ACTIVE,LOCKED",
-            'object.profile'  => "required|string|max:255|in:ADMIN,EMPLOYEE",
-            'selectedRoles'   => 'array',
-            'selectedRoles.*' => 'required|string|exists:roles,name',
-            'image'           => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'object.name'   => "required|string|$uniqueName|min:3|max:255",
+            'object.phone'  => "string|min:3|max:10",
+            'object.email'  => "required|string|email:rfc,dns,filter|$uniqueEmail|min:1|max:255",
+            'password'      => "{$required}string|max:255|min:8",
+            'object.status' => "required|string|max:255|in:ACTIVE,LOCKED",
+            'selectedRole'  => 'required|string|exists:roles,name',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
@@ -89,16 +89,17 @@ class Users extends Component
         $this->object        = new User();
         $this->image         = null;
         $this->password      = '';
-        $this->selectedRoles = [];
+        $this->selectedRole  = '';
         $this->emit('show-modal', 'show modal');
     }
 
     public function edit(User $user)
     {
-        $this->object        = $user;
-        $this->image         = null;
-        $this->password      = '';
-        $this->selectedRoles = $user->getRoleNames();
+        $this->object       = $user;
+        $this->image        = null;
+        $this->password     = '';
+        $this->selectedRole = $user->profile;
+
         $this->emit('show-modal', 'show modal');
     }
 
@@ -115,11 +116,12 @@ class Users extends Component
 
     public function resetUI()
     {
-        $this->object        = null;
-        $this->image         = null;
-        $this->password      = '';
-        $this->selectedRoles = [];
+        $this->object       = null;
+        $this->image        = null;
+        $this->password     = '';
+        $this->selectedRole = '';
         $this->resetValidation();
+
         $this->emit('hide-modal', 'hide modal');
     }
 
@@ -137,7 +139,7 @@ class Users extends Component
             $this->object->password = $this->password;
 
             $this->object->save();
-            $this->object->assignRole($this->selectedRoles);
+            $this->object->assignRole($this->selectedRole);
 
             DB::commit();
 
@@ -169,7 +171,7 @@ class Users extends Component
             }
     
             $this->object->save();
-            $this->object->syncRoles($this->selectedRoles);
+            $this->object->syncRoles($this->selectedRole);
 
             DB::commit();
 

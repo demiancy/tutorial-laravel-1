@@ -21,7 +21,6 @@ class UserSeeder extends Seeder
                 'email'    => 'admin@noemail.com',
                 'password' => 'desa',
                 'phone'    => '00000000',
-                'profile'  => 'ADMIN',
                 'status'   => 'ACTIVE',
                 
             ],
@@ -30,7 +29,6 @@ class UserSeeder extends Seeder
                 'email'    => 'employee@noemail.com',
                 'password' => 'desa',
                 'phone'    => '00000000',
-                'profile'  => 'EMPLOYEE',
                 'status'   => 'ACTIVE',
                 
             ]
