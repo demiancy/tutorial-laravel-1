@@ -1,4 +1,4 @@
-# Tutorial Laravel 8 y Livewire - Sales system
+# Tutorial Laravel 9 y Livewire - Sales system
 
 https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 
@@ -22,6 +22,8 @@ Sales system
 # Composer packages used
 * darryldecode/cart
 * spatie/laravel-permission
+* barryvdh/laravel-dompdf
+* maatwebsite/excel
 
 # Deployment
 
