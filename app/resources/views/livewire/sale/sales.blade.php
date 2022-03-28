@@ -20,7 +20,6 @@
 </div>
 
 <script>
-    
     window.onload = function() {
         initPosKeypress();
         initOnScan();

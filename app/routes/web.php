@@ -8,6 +8,7 @@ use App\Http\Livewire\Sales;
 use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Cashout;
+use App\Http\Livewire\Reports;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,6 @@ use App\Http\Livewire\Cashout;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/categories', Categories::class)->name('categories');
     Route::get('/products', Products::class)->name('products');
@@ -32,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/roles', Roles::class)->name('roles');
     Route::get('/users', Users::class)->name('users');
     Route::get('/cashout', Cashout::class)->name('cashout');
+    Route::get('/reports', Reports::class)->name('reports');
 });
 
 Route::redirect('/', '/sales');

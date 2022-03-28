@@ -13,6 +13,8 @@
 <script src="{{ asset('theme/plugins/currency/currency.js') }}" defer></script>
 <script src="{{ asset('vendor/dmauro-Keypress/keypress-2.1.5.min.js') }}" defer></script>
 <script src="{{ asset('vendor/onscan/onscan.min.js') }}" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
 <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -21,6 +23,7 @@
         App.init();
 
         initNiceScroll();
+        initFlatpickr();
     };
 </script>
 
@@ -73,6 +76,14 @@
             } else {
                 noty('AGREGA PRODUCTOS A LA VENTA.', 2);
             }
+        });
+    }
+
+    function initFlatpickr() {
+        flatpickr(document.getElementsByClassName('flatpickr'), {
+            enableTime: false,
+            dateFormat: 'd-m-Y',
+            locale: 'es'
         });
     }
 
