@@ -12,16 +12,6 @@
     </div>
 
     <div class="col-12">
-        <div class="h6">Elije el tipo de reporte</div>
-        <div class="form-group">
-            <select class="form-control" wire:model.lazy="reportType">
-                <option value="0">Ventas del día</option>
-                <option value="1">Ventas por fecha</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="col-12">
         <div class="form-group">
             <div class="h6">Fecha desde</div>
             <input 
@@ -56,14 +46,14 @@
         </button>
 
         <a 
-            href="{{ url("reports/pdf/$userId/$reportType/$fromDate/$toDate") }}"
-            class="btn btn-dark btn-block{{ $sales->count() ? ' disabled' : '' }}"
+            href="{{ url("reports/pdf/$userId/$fromDate/$toDate") }}"
+            class="btn btn-dark btn-block{{ !$sales->count() ? ' disabled' : '' }}"
             target="_blank"
         >
             Generar PDF
         <a 
-            href="{{ url("reports/excel/$userId/$reportType/$fromDate/$toDate") }}"
-            class="btn btn-dark btn-block{{ $sales->count() ? ' disabled' : '' }}"
+            href="{{ url("reports/excel/$userId/$fromDate/$toDate") }}"
+            class="btn btn-dark btn-block{{ !$sales->count() ? ' disabled' : '' }}"
             target="_blank"
         >
             Exportar a Excel

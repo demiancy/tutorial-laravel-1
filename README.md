@@ -15,6 +15,7 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 * The permissions module was not implemented, no one should be able to remove, edit or add permissions.
 * The assignment module was replaced by a select multiple in the roles form.
 * The field profile in users, has been removed because is not used.
+* The report type field in reports, has been removed because is not used.
 
 # App
 Sales system

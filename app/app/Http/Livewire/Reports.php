@@ -15,7 +15,6 @@ class Reports extends Component
     public ?string $fromDate = null;
     public ?string $toDate = null;
     public int $items;
-    public int $reportType;
     public $sales;
     public $details;
     public $sale = null;
@@ -26,7 +25,6 @@ class Reports extends Component
         $this->total         = 0;
         $this->userId        = 0;
         $this->items         = 0;
-        $this->reportType    = 0;
         $this->sales         = [];
         $this->details       = [];
     }

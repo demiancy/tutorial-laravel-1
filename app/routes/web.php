@@ -9,6 +9,7 @@ use App\Http\Livewire\Roles;
 use App\Http\Livewire\Users;
 use App\Http\Livewire\Cashout;
 use App\Http\Livewire\Reports;
+use App\Http\Controllers\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users', Users::class)->name('users');
     Route::get('/cashout', Cashout::class)->name('cashout');
     Route::get('/reports', Reports::class)->name('reports');
+    Route::get('/reports/pdf/{user}/{from_date?}/{to_date?}', [ExportController::class, 'reportPdf'])->name('reportPdf');
 });
 
 Route::redirect('/', '/sales');
