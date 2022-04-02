@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cashout', Cashout::class)->name('cashout');
     Route::get('/reports', Reports::class)->name('reports');
     Route::get('/reports/pdf/{user}/{from_date?}/{to_date?}', [ExportController::class, 'reportPdf'])->name('reportPdf');
+    Route::get('/reports/excel/{user}/{from_date?}/{to_date?}', [ExportController::class, 'reportExcel'])->name('reportExcel');
 });
 
 Route::redirect('/', '/sales');

@@ -9,6 +9,7 @@ use App\Models\Sale;
 use App\Models\SaleDetail;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\SalesExport;
 
 class ExportController extends Controller
 {
@@ -16,16 +17,8 @@ class ExportController extends Controller
     {
         $sales = [];
 
-        if (!$fromDate && strlen($fromDate)) {
-            $fromDate = Carbon::now();
-        }
-
-        if (!$toDate && strlen($toDate)) {
-            $toDate = Carbon::now();
-        }
-
-        $from = Carbon::parse($fromDate)->startOfDay();
-        $to   = Carbon::parse($toDate)->endOfDay();
+        $from = $this->stringToCarbon($fromDate)->startOfDay();
+        $to   = $this->stringToCarbon($toDate)->endOfDay();
         $user = 'Todos';
         
         $query = Sale::whereBetween('created_at', [$from, $to]);
@@ -47,5 +40,25 @@ class ExportController extends Controller
         ]);
         
         return $pdf->stream('salesReport.pdf');
+    }
+
+    public function reportExcel(int $userId, ?string $fromDate = null, ?string $toDate = null)
+    {
+        $from = $this->stringToCarbon($fromDate)->startOfDay();
+        $to   = $this->stringToCarbon($toDate)->endOfDay();
+
+        return Excel::download(
+            new SalesExport($userId, $from, $to), 
+            'sales.xlsx'
+        );
+    }
+
+    protected function stringToCarbon(?string $date = null) 
+    {
+        if (!$date && strlen($date)) {
+            return Carbon::now();
+        }
+
+        return Carbon::parse($date);
     }
 }
