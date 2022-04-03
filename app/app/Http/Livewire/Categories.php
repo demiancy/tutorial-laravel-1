@@ -7,11 +7,13 @@ use App\Models\Category;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Categories extends Component
 {
     use WithFileUploads;
     use WithPagination;
+    use AuthorizesRequests;
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners       = [
@@ -36,6 +38,8 @@ class Categories extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', Category::class);
+
         if (strlen($this->search)) {
             $categories = Category::where('name', 'like', '%'.$this->search.'%')
                 ->orderBy('id', 'desc');
@@ -67,6 +71,8 @@ class Categories extends Component
 
     public function new()
     {
+        $this->authorize('create', Category::class);
+
         $this->object = new Category();
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
@@ -74,6 +80,8 @@ class Categories extends Component
 
     public function edit(Category $category)
     {
+        $this->authorize('update', $category, Category::class);
+
         $this->object = $category;
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
@@ -81,6 +89,8 @@ class Categories extends Component
 
     public function destroy(Category $category)
     {
+        $this->authorize('delete', $category, Category::class);
+
         if ($category->canDelete()) {
             $category->delete();
             $this->resetPage();
@@ -92,6 +102,8 @@ class Categories extends Component
 
     public function resetUI()
     {
+        $this->authorize('viewAny', Category::class);
+
         $this->object = null;
         $this->image  = null;
         $this->resetValidation();
@@ -100,6 +112,8 @@ class Categories extends Component
 
     public function store()
     {
+        $this->authorize('create', Category::class);
+
         $this->validate();
 
         if ($this->image) {
@@ -113,6 +127,8 @@ class Categories extends Component
 
     public function update()
     {
+        $this->authorize('update', $this->object, Category::class);
+
         $this->validate();
 
         if ($this->image) {

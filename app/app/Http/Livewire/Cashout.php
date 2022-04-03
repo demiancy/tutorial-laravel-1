@@ -6,9 +6,12 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Sale;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Cashout extends Component
 {
+    use AuthorizesRequests;
+
     public string $componentName;
     public float $total;
     public int $userId;
@@ -30,6 +33,8 @@ class Cashout extends Component
 
     public function render()
     {
+        $this->authorize('cashout', Sale::class);
+
         return view('livewire.cashout.cashout',[
             'users' => User::orderBy('name', 'desc')->get()
         ])
@@ -39,6 +44,8 @@ class Cashout extends Component
 
     public function search()
     {
+        $this->authorize('cashout', Sale::class);
+
         $from = Carbon::parse($this->fromDate)->startOfDay();
         $to   = Carbon::parse($this->toDate)->endOfDay();
         
@@ -58,6 +65,8 @@ class Cashout extends Component
 
     public function viewDetails(Sale $sale)
     {
+        $this->authorize('cashout', Sale::class);
+
         $this->details = $sale->details()->get();
         $this->emit('show-modal', 'show modal');
     }

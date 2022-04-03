@@ -9,15 +9,17 @@
                 </h4>
 
                 <ul class="tabs tab-pills">
-                    <li>
-                        <a 
-                            href="javascript:void(0)" 
-                            class="tabmenu bg-dark" 
-                            wire:click="new()"
-                        >
-                            Agregar
-                        </a>
-                    </li>
+                    @can('create_roles')
+                        <li>
+                            <a 
+                                href="javascript:void(0)" 
+                                class="tabmenu bg-dark" 
+                                wire:click="new()"
+                            >
+                                Agregar
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
             @include('common.searchBox')
@@ -42,28 +44,32 @@
                                     {{ $role->name }}
                                 </td>
                                 <td class="text-center">
-                                    <a 
-                                        href="javascript:void(0)" 
-                                        class="btn btn-dark mtmobile" 
-                                        title="Editar"
-                                        wire:click="edit({{ $role->id }})"
-                                    >
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a>
-                                    <a 
-                                        href="javascript:void(0)" 
-                                        @if ($role->canDelete())
-                                            class="btn btn-dark" 
-                                            title="Borrar"
-                                            onclick="confirm('deleteRole', {{ $role->id }})"
-                                        @else
-                                            class="btn btn-dark disabled" 
-                                            title="Este Rol no puede ser borrado"
-                                            disabled
-                                        @endif
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    @can('update_roles')
+                                        <a 
+                                            href="javascript:void(0)" 
+                                            class="btn btn-dark mtmobile" 
+                                            title="Editar"
+                                            wire:click="edit({{ $role->id }})"
+                                        >
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete_roles')
+                                        <a 
+                                            href="javascript:void(0)" 
+                                            @if ($role->canDelete())
+                                                class="btn btn-dark" 
+                                                title="Borrar"
+                                                onclick="confirm('deleteRole', {{ $role->id }})"
+                                            @else
+                                                class="btn btn-dark disabled" 
+                                                title="Este Rol no puede ser borrado"
+                                                disabled
+                                            @endif
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach

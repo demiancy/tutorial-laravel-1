@@ -29,7 +29,7 @@ class Category extends Model
     {
         //Remove the image when delete object.
         static::deleted(function ($category) {
-            Storage::disk('categories')->delete($category->image);
+            Storage::disk('categories')->delete($category->image ?? '');
         });
     }
 

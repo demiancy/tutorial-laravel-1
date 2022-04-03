@@ -8,11 +8,13 @@ use App\Models\Category;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Products extends Component
 {
     use WithFileUploads;
     use WithPagination;
+    use AuthorizesRequests;
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners       = [
@@ -37,6 +39,8 @@ class Products extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', Product::class);
+
         if (strlen($this->search)) {
             $products = Product::where('name', 'like', '%'.$this->search.'%')
                 ->orWhere('barcode', 'like', '%'.$this->search.'%')
@@ -79,6 +83,8 @@ class Products extends Component
 
     public function new()
     {
+        $this->authorize('create', Product::class);
+
         $this->object = new Product();
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
@@ -86,6 +92,8 @@ class Products extends Component
 
     public function edit(Product $product)
     {
+        $this->authorize('update', $product, Product::class);
+
         $this->object = $product;
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
@@ -93,6 +101,8 @@ class Products extends Component
 
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product, Product::class);
+
         if ($product->canDelete()) {
             $product->delete();
             $this->resetPage();
@@ -104,6 +114,8 @@ class Products extends Component
 
     public function resetUI()
     {
+        $this->authorize('viewAny', Product::class);
+
         $this->object = null;
         $this->image  = null;
         $this->resetValidation();
@@ -112,6 +124,8 @@ class Products extends Component
 
     public function store()
     {
+        $this->authorize('create', Product::class);
+
         $this->validate();
 
         if ($this->image) {
@@ -125,6 +139,8 @@ class Products extends Component
 
     public function update()
     {
+        $this->authorize('update', $this->object, Product::class);
+
         $this->validate();
 
         if ($this->image) {

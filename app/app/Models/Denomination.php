@@ -29,8 +29,8 @@ class Denomination extends Model
     protected static function booted()
     {
         //Remove the image when delete object.
-        static::deleted(function ($product) {
-            Storage::disk('denominations')->delete($product->image);
+        static::deleted(function ($denomination) {
+            Storage::disk('denominations')->delete($denomination->image);
         });
     }
 

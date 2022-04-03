@@ -6,9 +6,12 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Sale;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Reports extends Component
 {
+    use AuthorizesRequests;
+
     public string $componentName;
     public float $total;
     public int $userId;
@@ -31,6 +34,8 @@ class Reports extends Component
 
     public function render()
     {
+        $this->authorize('reports', Sale::class);
+
         $this->salesByDate();
 
         return view('livewire.reports.reports',[
@@ -60,7 +65,9 @@ class Reports extends Component
 
     public function getDetails(int $saleId = 0)
     {
-        $this->sale = Sale::find($saleId);
+        $this->authorize('reports', Sale::class);
+
+        $this->sale    = Sale::find($saleId);
         $this->details = $this->sale->details()->get();
         $this->emit('show-modal', 'show modal');
     }

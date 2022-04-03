@@ -7,11 +7,13 @@ use App\Models\Denomination;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Denominations extends Component
 {
     use WithFileUploads;
     use WithPagination;
+    use AuthorizesRequests;
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners       = [
@@ -36,6 +38,8 @@ class Denominations extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', Denomination::class);
+
         if (strlen($this->search)) {
             $denominations = Denomination::where('type', 'like', '%'.$this->search.'%')
                 ->orderBy('id', 'desc');
@@ -62,6 +66,8 @@ class Denominations extends Component
 
     public function new()
     {
+        $this->authorize('create', Denomination::class);
+
         $this->object = new Denomination();
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
@@ -69,6 +75,8 @@ class Denominations extends Component
 
     public function edit(Denomination $denomination)
     {
+        $this->authorize('update', $denomination, Denomination::class);
+
         $this->object = $denomination;
         $this->image  = null;
         $this->emit('show-modal', 'show modal');
@@ -76,6 +84,8 @@ class Denominations extends Component
 
     public function destroy(Denomination $denomination)
     {
+        $this->authorize('delete', $denomination, Denomination::class);
+
         if ($denomination->canDelete()) {
             $denomination->delete();
             $this->resetPage();
@@ -87,6 +97,8 @@ class Denominations extends Component
 
     public function resetUI()
     {
+        $this->authorize('viewAny', Denomination::class);
+
         $this->object = null;
         $this->image  = null;
         $this->resetValidation();
@@ -95,6 +107,8 @@ class Denominations extends Component
 
     public function store()
     {
+        $this->authorize('create', Denomination::class);
+
         $this->validate();
 
         if ($this->image) {
@@ -108,6 +122,8 @@ class Denominations extends Component
 
     public function update()
     {
+        $this->authorize('update', $this->object, Denomination::class);
+
         $this->validate();
 
         if ($this->image) {

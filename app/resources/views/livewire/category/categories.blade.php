@@ -9,15 +9,17 @@
                 </h4>
 
                 <ul class="tabs tab-pills">
-                    <li>
-                        <a 
-                            href="javascript:void(0)" 
-                            class="tabmenu bg-dark" 
-                            wire:click="new()"
-                        >
-                            Agregar
-                        </a>
-                    </li>
+                    @can('create_categories')
+                        <li>
+                            <a 
+                                href="javascript:void(0)" 
+                                class="tabmenu bg-dark" 
+                                wire:click="new()"
+                            >
+                                Agregar
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </div>
             @include('common.searchBox')
@@ -51,28 +53,32 @@
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <a 
-                                        href="javascript:void(0)" 
-                                        class="btn btn-dark mtmobile" 
-                                        title="Editar"
-                                        wire:click="edit({{ $category->id }})"
-                                    >
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a>
-                                    <a 
-                                        href="javascript:void(0)" 
-                                        @if ($category->canDelete())
-                                            class="btn btn-dark" 
-                                            title="Borrar"
-                                            onclick="confirm('deleteCategory', {{ $category->id }})"
-                                        @else
-                                            class="btn btn-dark disabled" 
-                                            title="Esta categoria no puede ser borrada"
-                                            disabled
-                                        @endif
-                                    >
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    @can('update_categories')
+                                        <a 
+                                            href="javascript:void(0)" 
+                                            class="btn btn-dark mtmobile" 
+                                            title="Editar"
+                                            wire:click="edit({{ $category->id }})"
+                                        >
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                    @endcan
+                                    @can('delete_categories')
+                                        <a 
+                                            href="javascript:void(0)" 
+                                            @if ($category->canDelete())
+                                                class="btn btn-dark" 
+                                                title="Borrar"
+                                                onclick="confirm('deleteCategory', {{ $category->id }})"
+                                            @else
+                                                class="btn btn-dark disabled" 
+                                                title="Esta categoria no puede ser borrada"
+                                                disabled
+                                            @endif
+                                        >
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    @endcan
                                 </td>
                             </tr>
                             @endforeach

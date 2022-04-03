@@ -10,10 +10,13 @@ use App\Models\Denomination;
 use App\Models\Product;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Sales extends Component
 {
-    protected $listeners       = [
+    use AuthorizesRequests;
+
+    protected $listeners = [
         'scanCode'       => 'scanCode',
         'removeSaleItem' => 'removeSaleItem',
         'clearCart'      => 'clearCart',
@@ -29,6 +32,8 @@ class Sales extends Component
 
     public function render()
     {
+        $this->authorize('sales', Sale::class);
+
         $denominations = Denomination::where('value', '>', 0)
             ->orderBy('value', 'desc')
             ->get();
@@ -53,6 +58,8 @@ class Sales extends Component
 
     public function saveSale()
     {
+        $this->authorize('sales', Sale::class);
+
         if ($this->validateSale()) {
             try {
                 DB::beginTransaction();
@@ -93,29 +100,39 @@ class Sales extends Component
     //Add a random product to sale.
     public function addProduct()
     {
+        $this->authorize('sales', Sale::class);
+
         $this->scanCode(str_pad(random_int(1, 400), 9, 0, STR_PAD_LEFT), 1);
     }
 
     public function resetCash()
     {
+        $this->authorize('sales', Sale::class);
+
         $this->object->cash   = 0;
         $this->object->change = 0;
     }
 
     public function exactCash()
     {
+        $this->authorize('sales', Sale::class);
+
         $this->object->cash   = $this->object->total;
         $this->object->change = 0;
     }
 
     public function addCash(float $value)
     {
+        $this->authorize('sales', Sale::class);
+
         $this->object->cash  += $value;
         $this->object->change = $this->object->cash - $this->object->total;
     }
 
     public function removeSaleItem(int $id) 
     {
+        $this->authorize('sales', Sale::class);
+
         Cart::remove($id);
         $this->updateTotal();
     }
@@ -132,6 +149,8 @@ class Sales extends Component
 
     public function updateQty(int $id, int $cant, bool $relative = false)
     {
+        $this->authorize('sales', Sale::class);
+
         if ($row = Cart::get($id)) {
             $product = Product::find($id);
 
@@ -144,6 +163,8 @@ class Sales extends Component
 
     public function clearCart()
     {
+        $this->authorize('sales', Sale::class);
+
         Cart::clear();
         $this->resetSale();
         $this->emit('noty', "Carrito vacio.");
@@ -151,6 +172,8 @@ class Sales extends Component
 
     public function scanCode(string $barcode = '', int $cant = 1)
     {
+        $this->authorize('sales', Sale::class);
+
         $product = Product::byBarcode($barcode)->first();
 
         if (!$product) {
@@ -162,6 +185,8 @@ class Sales extends Component
 
     public function printTicket($sale)
     {
+        $this->authorize('sales', Sale::class);
+
         return Redirect::to("print://$sale->id");
     }
 

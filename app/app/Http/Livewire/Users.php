@@ -9,11 +9,13 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Users extends Component
 {
     use WithFileUploads;
     use WithPagination;
+    use AuthorizesRequests;
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners       = [
@@ -42,6 +44,8 @@ class Users extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', User::class);
+
         if (strlen($this->search)) {
             $users = User::where('name', 'like', '%'.$this->search.'%')
                 ->orWhere('email', 'like', '%'.$this->search.'%')
@@ -86,6 +90,8 @@ class Users extends Component
 
     public function new()
     {
+        $this->authorize('create', User::class);
+
         $this->object        = new User();
         $this->image         = null;
         $this->password      = '';
@@ -95,6 +101,8 @@ class Users extends Component
 
     public function edit(User $user)
     {
+        $this->authorize('update', $user, User::class);
+
         $this->object       = $user;
         $this->image        = null;
         $this->password     = '';
@@ -105,6 +113,8 @@ class Users extends Component
 
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user, User::class);
+
         if ($user->canDelete()) {
             $user->delete();
             $this->resetPage();
@@ -116,6 +126,8 @@ class Users extends Component
 
     public function resetUI()
     {
+        $this->authorize('viewAny', User::class);
+
         $this->object       = null;
         $this->image        = null;
         $this->password     = '';
@@ -127,6 +139,8 @@ class Users extends Component
 
     public function store()
     {
+        $this->authorize('create', User::class);
+
         $this->validate();
 
         try {
@@ -155,6 +169,8 @@ class Users extends Component
 
     public function update()
     {
+        $this->authorize('update', $this->object, User::class);
+
         $this->validate();
 
         try {

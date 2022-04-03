@@ -7,10 +7,12 @@ use Spatie\Permission\Models\Permission;
 use Livewire\WithPagination;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Roles extends Component
 {
     use WithPagination;
+    use AuthorizesRequests;
 
     protected $paginationTheme = 'bootstrap';
     protected $listeners       = [
@@ -36,6 +38,8 @@ class Roles extends Component
 
     public function render()
     {
+        $this->authorize('viewAny', Role::class);
+
         if (strlen($this->search)) {
             $roles = Role::where('name', 'like', '%'.$this->search.'%')
                 ->orderBy('name', 'desc');
@@ -69,6 +73,8 @@ class Roles extends Component
 
     public function new()
     {
+        $this->authorize('create', Role::class);
+
         $this->object              = new Role();
         $this->selectedPermissions = [];
         $this->emit('show-modal', 'show modal');
@@ -76,6 +82,8 @@ class Roles extends Component
 
     public function edit(Role $role)
     {
+        $this->authorize('update', $role, Role::class);
+
         $this->object              = $role;
         $this->selectedPermissions = $role->getPermissionNames();
 
@@ -84,6 +92,8 @@ class Roles extends Component
 
     public function destroy(Role $role)
     {
+        $this->authorize('delete', $role, Role::class);
+
         if ($role->canDelete()) {
             $role->delete();
             $this->resetPage();
@@ -95,6 +105,8 @@ class Roles extends Component
 
     public function resetUI()
     {
+        $this->authorize('viewAny', Role::class);
+
         $this->object              = null;
         $this->selectedPermissions = [];
         $this->resetValidation();
@@ -103,6 +115,8 @@ class Roles extends Component
 
     public function store()
     {
+        $this->authorize('create', Role::class);
+
         $this->validate();
 
         try {
@@ -125,6 +139,8 @@ class Roles extends Component
 
     public function update()
     {
+        $this->authorize('update', $this->object, Role::class);
+
         $this->validate();
 
         try {

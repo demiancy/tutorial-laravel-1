@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header bg-dark">
                 <h5 class="modal-title text-white">
-                    <span class="font-weight-bold">{{ $componentName }}</span> | {{ $object ? 'EDITAR' : 'CREAR'  }}
+                    <span class="font-weight-bold">{{ $componentName }}</span> | {{ ($object->exists ?? false) ? 'EDITAR' : 'CREAR'  }}
                 </h5>
                 <h6 class="text-center text-warning" wire:loading>
                     POR FAVOR ESPERE
