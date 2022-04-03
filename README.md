@@ -1,4 +1,4 @@
-# Tutorial Laravel 9 y Livewire - Sales system
+# Tutorial Laravel 9 y Livewire - Simple sales system
 
 https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 
@@ -19,7 +19,7 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 * C# app for printing was not implemented.
 
 # App
-Sales system
+Simple sales system
 
 # Composer packages used
 * darryldecode/cart
@@ -33,8 +33,24 @@ First you have to download the repository
 
     git clone https://github.com/demiancy/tutorial-laravel-1.git
 
-The repository have the files for deploy app in Docker, with the next command you start the app in the port 3000
+Setting environment variables for Laravel in app/.env file, you can use app/.env.example file as an example. 
+
+Use composer for install dependencies
+
+    docker-compose run app yarn install
+
+You must prepare your database (which must be previously created and emptied), for this you must first run the migrations and then load the test data: 
+
+    docker-compose run app php artisan migrate:fresh
+    docker-compose run app php artisan db:seed
+
+With the next command you start the app in the port 3000 and phpmyadmin in port 80
 
     docker-compose up
 
-In case of not have Docker, you can copy the folder app into document root of your server.
+In case of not have Docker, you can run the app into your server.
+
+# Screenshots
+
+![Screenshot 1](screenshot-1.png)
+![Screenshot 2](screenshot-2.png)

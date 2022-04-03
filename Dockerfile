@@ -5,7 +5,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 RUN apt-get update && apt-get install -y \
-    git zip apt-utils zlib1g-dev libpng-dev libzip-dev
+    git zip apt-utils zlib1g-dev libpng-dev libzip-dev default-mysql-client
 
 RUN docker-php-ext-install mysqli pdo pdo_mysql gd zip
 
@@ -20,7 +20,8 @@ RUN set -xe \
 RUN set -xe \
     && apt-get install -y curl software-properties-common \
     && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
-    && apt-get install -y nodejs 
+    && apt-get install -y nodejs \ 
+    && npm install -g npm
 
 #APACHE CONFIG
 ENV APACHE_DOCUMENT_ROOT /home/${USER}
