@@ -11,11 +11,12 @@ https://www.udemy.com/course/sistema-de-ventas-laravel-8-y-livewire
 ## Notes
 * I used Docker.
 * I used Laravel 9.
-* In Sales view, added a button for add random product to sale (for testing sale module).
+* In Sales view, added a button for add random product to sale (for testing sales module).
 * The permissions module was not implemented, no one should be able to remove, edit or add permissions.
-* The assignment module was replaced by a select multiple in the roles form.
+* The assignment module was replaced by a multiple select in the roles form.
 * The field profile in users, has been removed because is not used.
 * The report type field in reports, has been removed because is not used.
+* C# app for printing was not implemented.
 
 # App
 Sales system
