@@ -37,7 +37,7 @@ Setting environment variables for Laravel in app/.env file, you can use app/.env
 
 Use composer for install dependencies
 
-    docker-compose run app yarn install
+    docker-compose run app composer install
 
 You must prepare your database (which must be previously created and emptied), for this you must first run the migrations and then load the test data: 
 
